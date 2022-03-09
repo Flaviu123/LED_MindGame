@@ -1,5 +1,5 @@
 import gpiozero
-import time
+import time    
 
 class Settings():
     LED1 = LED(17)
@@ -14,6 +14,5 @@ class Settings():
     Button4 = Button(16, pull up = False)
     Button5 = Button(26, pull up = False)
 
-class Button():
-    def __init__(self):
+class Tasta():
 	pass

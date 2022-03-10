@@ -14,5 +14,5 @@ class Settings():
     Button4 = Button(16, pull up = False)
     Button5 = Button(26, pull up = False)
 
-class Tasta():
+class TastaLaViesta():
 	pass

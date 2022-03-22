@@ -7,6 +7,7 @@ print("Drücke einen Knopf um das Spiel zu beginnen")
 
 class Settings():
     num_io = 2
+    gameover = False
     LED1 = LED(17)
     LED2 = LED(27)
     LED3 = LED(22)
@@ -34,7 +35,8 @@ class Level():
     def __init__(self):
         self.level_ind = 0
         self.led_lenght = 2
-        self.time = 2
+        self.time = 0
+        self.sequence = None
 
     def next_level(self):
         pass
@@ -44,9 +46,12 @@ class Level():
 
 
 class Sequence():
-    def __init__(self):
-        sequence = []
-        led_choose = (1, Settings.num_io)
+    def __init__(self, led_lenght, time):
+        self.led_lenght = led_lenght
+        self.time = time
+        self.sequence = []
+        self.user_sequence = []
+        self.led_choose = (1, Settings.num_io)
 
     def generate_sequence(led_lenght, time):
         random.uniform(led_choose)

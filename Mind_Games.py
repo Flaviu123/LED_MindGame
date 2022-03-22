@@ -1,9 +1,8 @@
-import gpiozero
+from gpiozero import LED, Button
 import time
 import random
 
 print("Drücke einen Knopf um das Spiel zu beginnen")
-button.when_pressed = Game.
 
 
 class Settings():
@@ -14,47 +13,50 @@ class Settings():
     LED4 = LED(23)
     LED5 = LED(24)
 
-    Button1 = Button(25, pull
-    up = False)
-    Button2 = Button(5, pull
-    up = False)
-    Button3 = Button(6, pull
-    up = False)
-    Button4 = Button(16, pull
-    up = False)
-    Button5 = Button(26, pull
-    up = False)
+    Button1 = Button(25, pull_up=False)
+    Button2 = Button(5, pull_up=False)
+    Button3 = Button(6, pull_up=False)
+    Button4 = Button(16, pull_up=False)
+    Button5 = Button(26, pull_up=False)
 
-    class Game():
 
-    class Level():
-        def __init__(self):
-            self.level_ind = 0
-            self.led_lenght = 2
-            self.time = 2
+class Game():
+    run = False
 
-        def next_level(self):
-            pass
+    def __init__(self):
+        pass
 
-        def reset_level(self):
-            pass
+    def run():
+        pass
 
-    class Sequence():
-        def __init(self):
-            sequence = []
-            led_choose = (1, Settings.num_io)
 
-        def generate_sequence(led_lenght, time):
-            random.uniform(led_choose)
-            pass
+class Level():
+    def __init__(self):
+        self.level_ind = 0
+        self.led_lenght = 2
+        self.time = 2
 
-        def show_sequence():
-            pass
+    def next_level(self):
+        pass
 
-        def user_sequnce():
-            pass
+    def reset_level(self):
+        pass
 
-        def check_sequnce():
-            return
 
-    start.game()
+class Sequence():
+    def __init__(self):
+        sequence = []
+        led_choose = (1, Settings.num_io)
+
+    def generate_sequence(led_lenght, time):
+        random.uniform(led_choose)
+        pass
+
+    def show_sequence():
+        pass
+
+    def user_sequnce():
+        pass
+
+    def check_sequnce():
+        return

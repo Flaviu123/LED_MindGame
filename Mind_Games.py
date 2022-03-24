@@ -9,6 +9,7 @@ class Settings():
     sequence_ledlength = 0
     sequence_showcheck = 1
     show_sequence = 1
+    input_check = 0
     LED1 = LED(17)
     LED2 = LED(27)
     LED3 = LED(22)
@@ -40,7 +41,8 @@ class Level():
         self.sequence = None
 
     def next_level(self):
-        pass
+        self.sequence = Sequence(self.led_length, self.time)
+
 
     def reset_level(self):
         pass
@@ -51,38 +53,39 @@ class Sequence():
         self.led_length = led_length
         self.time = time
         self.sequence = []
-        self.user_sequence = []
+        self.playerinput = []
 
-    def generate_sequence(self, led_length, time):
+    def generate_sequence(self, led_length):
         for i in range(0, led_lenght):
-                add_s = random.uniform(1, Settings.num_io)
-                self.sequence.append(add_s)
+            add_s = random.uniform(1, Settings.num_io)
+            self.sequence.append(add_s)
 
-    def show_sequence(self):
+
+    def show_sequence(self, time):
         if Settings.sequence_showcheck == Settings.show_sequence:
             if self.sequence[Settings.show_sequence - 1] == 1:
                 LED1.on()
-                sleep(2)
+                sleep(time)
                 LED1.off()
 
             elif self.sequence[Settings.show_sequence - 1] == 2:
                 LED2.on()
-                sleep(2)
+                sleep(time)
                 LED2.off()
 
             elif self.sequence[Settings.show_sequence - 1] == 3:
                 LED3.on()
-                sleep(2)
+                sleep(time)
                 LED3.off()
 
             elif self.sequence[Settings.show_sequence - 1] == 4:
                 LED4.on()
-                sleep(2)
+                sleep(time)
                 LED4.off()
 
             elif self.sequence[Settings.show_sequence - 1] == 5:
                 LED5.on()
-                sleep(2)
+                sleep(time)
                 LED5.off()
 
         if len(self.sequence) == Settings.sequence_showcheck:
@@ -96,8 +99,33 @@ class Sequence():
             self.show_sequence()
 
 
-    def input_sequence(self):
-        pass
+    def player_input(self):
+        if Settings.Button1.is_pressed:
+            self.playerinput.append(1)
+            self.check_sequence()
+
+        if Settings.Button2.is_pressed:
+            self.playerinput.append(2)
+            self.check_sequence()
+
+        if Settings.Button3.is_pressed:
+            self.playerinput.append(3)
+            self.check_sequence()
+
+        if Settings.Button4.is_pressed:
+            self.playerinput.append(4)
+            self.check_sequence()
+
+        if Settings.Button5.is_pressed:
+            self.playerinput.append(5)
+            self.check_sequence()
+            
+            
+
 
     def check_sequence(self):
-        return
+        if self.sequence[Settings.input_check] == self.playerinput[Settings.input_check]:
+            print("Richtige LED gemerkt!")
+            Settings.input_check += 1
+        else:
+            pass #GAME RESTART

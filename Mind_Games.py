@@ -6,7 +6,7 @@ import random
 class Settings():
     num_io = 2
     gameover = False
-    time = 2
+    time = 0.5
     generate_sequencecheck = 0
     sequence_ledlength = 0
     sequence_showcheck = 1
@@ -27,13 +27,15 @@ class Settings():
 
 
 class Game():
-    run = False
-
     def __init__(self):
-        pass
+        run = False
+        self.sequence = Sequence()
 
-    def run():
-        pass
+    def run(self):
+        self.run = True
+        while self.run:
+            self.sequence.generate_sequence()
+            self.sequence.show_sequence(Settings.time)
 
 
 
@@ -46,8 +48,6 @@ class Sequence():
         for i in range(0, Settings.led_length):
             add_s = random.randint(1, Settings.num_io)
             self.sequence.append(add_s)
-        self.show_sequence(Settings.time)
-
 
     def show_sequence(self, time):
         for i in self.sequence:
@@ -84,7 +84,7 @@ class Sequence():
                 sleep(time)"""
 
 
-        self.input_sequence()
+        #self.input_sequence()
 
 
     def player_input(self):
@@ -120,5 +120,5 @@ class Sequence():
         else:
             pass #GAME RESTARTd
 
-s = Sequence()
-s.generate_sequence()
+game = Game()
+game.run()

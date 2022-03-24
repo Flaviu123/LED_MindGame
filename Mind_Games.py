@@ -25,7 +25,7 @@ class Game():
         self.button3.when_pressed = self.sequence.input3
         self.button4.when_pressed = self.sequence.input4
         self.button5.when_pressed = self.sequence.input5
-        run = False
+        self.run = False
         
     def run(self):
         self.run = True

@@ -4,7 +4,7 @@ import random
 
 
 class Settings():
-    num_io = 5
+    num_io = 2
     led1 = LED(17)
     led2 = LED(27)
     led3 = LED(22)
@@ -81,7 +81,6 @@ class Sequence():
                 Settings.led5.off()
                 sleep(self.time)
                 
-        self.allow_input = True
 
     def input1(self):
         if self.allow_input == True:
@@ -121,7 +120,7 @@ class Sequence():
     def check_sequence(self, button_id):
         self.input_position += 1
         if self.sequence[self.input_position - 1] == button_id:
-            print(f"Richtig! {self.input_position}/{self.led_length}")
+           print(f"Richtig! {self.input_position}/{self.led_length}")
         else:
             print("Gameover!")
             self.reset_level()
@@ -133,7 +132,6 @@ class Sequence():
             sleep(1)
             print("Nächstes Level beginnt in 1 Sekunde!")
             sleep(1)
-            self.input_enabled = False
             self.sequence = []
             self.allow_input = False
                 
@@ -150,14 +148,13 @@ class Sequence():
         sleep(1)
         print("Das Level startet sich in 1 Sekunde neu!")
         sleep(1)
-        self.input_enabled = False
         self.sequence = []
-        Settings.allow_input = False
+        self.allow_input = False
             
     def wait_for_input(self):
         self.input_position = 0
-        self.input_enabled = True
-        while self.input_enabled:
+        self.allow_input = True
+        while self.allow_input:
             sleep(0.1)
 
 game = Game()

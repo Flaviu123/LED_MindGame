@@ -15,29 +15,27 @@ class Settings():
     led_length = 5
     led1 = LED(17)
     led2 = LED(27)
-    led3 = LED(22)
-    led4 = LED(23)
-    led5 = LED(24)
-
-    button1 = Button(25, pull_up=False)
-    button2 = Button(5, pull_up=False)
-    button3 = Button(6, pull_up=False)
-    button4 = Button(16, pull_up=False)
-    button5 = Button(26, pull_up=False)
+#    led3 = LED(22)
+#    led4 = LED(23)
+#    led5 = LED(24)
 
 
 class Game():
     def __init__(self):
-        run = False
+        self.button1 = Button(25, pull_up=False)
+        self.button2 = Button(5, pull_up=False)
+#        button3 = Button(6, pull_up=False)
+#        button4 = Button(16, pull_up=False)
+#        button5 = Button(26, pull_up=False)
         self.sequence = Sequence()
-
+        self.button1.when_pressed = self.sequence.input1
+        self.button2.when_pressed = self.sequence.input2
+        run = False
     def run(self):
         self.run = True
         while self.run:
             self.sequence.generate_sequence()
-            self.sequence.show_sequence(Settings.time)
-
-
+            #self.sequence.show_sequence(Settings.time)
 
 class Sequence():
     def __init__(self):
@@ -87,31 +85,10 @@ class Sequence():
         #self.input_sequence()
 
 
-    def player_input(self):
-        if Settings.button1.is_pressed:
-            self.playerinputlist.append(1)
-            self.check_sequence()
-
-        elif Settings.button2.is_pressed:
-            self.playerinputlist.append(2)
-            self.check_sequence()
-
-        #elif Settings.button3.is_pressed:
-            #self.playerinputlist.append(3)
-            #self.check_sequence()
-
-        #elif Settings.button4.is_pressed:
-            #self.playerinputlist.append(4)
-            #self.check_sequence()
-
-        #elif Settings.button5.is_pressed:
-            #self.playerinputlist.append(5)
-            #self.check_sequence()
-
-        elif len(self.playerinputlist) == len(self.sequence):
-            pass #Whileschleife wird unterbrochen
-
-
+    def input1(self):
+        print("input1")
+    def input2(self):
+        print("input2")
 
     def check_sequence(self):
         if self.sequence[Settings.input_check] == self.playerinputlist[Settings.input_check]:
@@ -119,6 +96,7 @@ class Sequence():
             Settings.input_check += 1
         else:
             pass #GAME RESTARTd
+
 
 game = Game()
 game.run()

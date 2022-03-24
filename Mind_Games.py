@@ -4,9 +4,10 @@ import random
 
 
 class Settings():
+    allow_input = False
     num_io = 2
     gameover = False
-    time = 0.1
+    time = 0.5
     generate_sequencecheck = 0
     sequence_ledlength = 0
     sequence_showcheck = 1
@@ -30,6 +31,9 @@ class Game():
         self.sequence = Sequence()
         self.button1.when_pressed = self.sequence.input1
         self.button2.when_pressed = self.sequence.input2
+#        self.button3.when_pressed = self.sequence.input3
+#        self.button4.when_pressed = self.sequence.input4
+#        self.button5.when_pressed = self.sequence.input5
         run = False
     def run(self):
         self.run = True
@@ -52,14 +56,12 @@ class Sequence():
     def show_sequence(self, time):
         for i in self.sequence:
             if i == 1:
-                print("1")
                 Settings.led1.on()
                 sleep(time)
                 Settings.led1.off()
                 sleep(time)
 
             elif i == 2:
-                print("2")
                 Settings.led2.on()
                 sleep(time)
                 Settings.led2.off()
@@ -70,46 +72,91 @@ class Sequence():
                 sleep(time)
                 Settings.led3.off()
                 sleep(time)
-
             elif i == 4:
                 Settings.led4.on()
                 sleep(time)
                 Settings.led4.off()
                 sleep(time)
-
             elif i == 5:
                 Settings.led5.on()
                 sleep(time)
                 Settings.led5.off()
                 sleep(time)"""
+        Settings.allow_input = True
 
-
-        #self.input_sequence()
 
 
     def input1(self):
-        Settings.led1.on()
-        sleep(0.2)
-        Settings.led1.off()
-        self.check_sequence(1)
+        if Settings.allow_input == True:
+            Settings.led1.on()
+            sleep(0.2)
+            Settings.led1.off()
+            self.check_sequence(1)
 
     def input2(self):
-        Settings.led2.on()
-        sleep(0.2)
-        Settings.led2.off()
-        self.check_sequence(2)
+        if Settings.allow_input == True:
+            Settings.led2.on()
+            sleep(0.2)
+            Settings.led2.off()
+            self.check_sequence(2)
+        
+    """def input3(self):
+        if Settings.allow_input == True:
+            Settings.led3.on()
+            sleep(0.2)
+            Settings.led3.off()
+            self.check_sequence(3)
+        
+    def input4(self):
+        if Settings.allow_input == True:
+            Settings.led4.on()
+            sleep(0.2)
+            Settings.led4.off()
+            self.check_sequence(4)
+        
+    def input5(self):
+        if Settings.allow_input == True:
+            Settings.led5.on()
+            sleep(0.2)
+            Settings.led5.off()
+            self.check_sequence(5)"""
 
     def check_sequence(self, button_id):
         self.input_position += 1
         if self.sequence[self.input_position - 1] == button_id:
-            print("Gut")
+            print(f"Richtig! {self.input_position}/{Settings.led_length}")
         else:
-            print("Falsch")
-        print(Settings.led_length)
+            print("Gameover!")
+            self.reset_level()
         if self.input_position == Settings.led_length:
+            self.increase_difficulty()
+            print("Nächstes Level beginnt in 3 Sekunden!")
+            sleep(1)
+            print("Nächstes Level beginnt in 2 Sekunden!")
+            sleep(1)
+            print("Nächstes Level beginnt in 1 Sekunde!")
+            sleep(1)
             self.input_enabled = False
             self.sequence = []
-
+            Settings.allow_input = False
+                
+    def increase_difficulty(self):
+        Settings.led_length += 1
+        Settings.time * 0.8
+        
+    def reset_level(self):
+        Settings.led_length = 5
+        Settings.time = 0.5
+        print("Das Level startet sich in 3 Sekunden neu!")
+        sleep(1)
+        print("Das Level startet sich in 2 Sekunden neu!")
+        sleep(1)
+        print("Das Level startet sich in 1 Sekunde neu!")
+        sleep(1)
+        self.input_enabled = False
+        self.sequence = []
+        Settings.allow_input = False
+            
     def wait_for_input(self):
         self.input_position = 0
         self.input_enabled = True

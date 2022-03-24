@@ -4,7 +4,7 @@ import random
 
 
 class Settings():
-    num_io = 2
+    num_io = 5
     led1 = LED(17)
     led2 = LED(27)
     led3 = LED(22)

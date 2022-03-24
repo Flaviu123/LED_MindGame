@@ -44,48 +44,47 @@ class Sequence():
 
     def generate_sequence(self):
         for i in range(0, Settings.led_length):
-            add_s = random.uniform(1, Settings.num_io)
+            add_s = random.randint(1, Settings.num_io)
             self.sequence.append(add_s)
-            Settings.generate_sequencecheck += 1
-            if Settings.generate_sequencecheck == Settings.led_length:
-               self.show_sequence(Settings.time)
+        self.show_sequence(Settings.time)
 
 
     def show_sequence(self, time):
-        for i in range(0, Settings.led_length + 1):
-            if self.sequence[Settings.show_sequence - 1] == 1:
-                LED1.on()
-                Settings.show_sequence += 1
+        for i in self.sequence:
+            if i == 1:
+                print("1")
+                Settings.LED1.on()
                 sleep(time)
-                LED1.off()
-
-            elif self.sequence[Settings.show_sequence - 1] == 2:
-                LED2.on()
-                Settings.show_sequence += 1
+                Settings.LED1.off()
                 sleep(time)
-                LED2.off()
 
-            elif self.sequence[Settings.show_sequence - 1] == 3:
-                LED3.on()
-                Settings.show_sequence += 1
+            elif i == 2:
+                print("2")
+                Settings.LED2.on()
                 sleep(time)
-                LED3.off()
-
-            elif self.sequence[Settings.show_sequence - 1] == 4:
-                LED4.on()
-                Settings.show_sequence += 1
+                Settings.LED2.off()
                 sleep(time)
-                LED4.off()
 
-            elif self.sequence[Settings.show_sequence - 1] == 5:
-                LED5.on()
-                Settings.show_sequence += 1
+            """elif i == 3:
+                Settings.LED3.on()
                 sleep(time)
-                LED5.off()
+                Settings.LED3.off()
+                sleep(time)
 
-            elif len(self.sequence) == Settings.show_sequence - 1:
-                Settings.show_sequence = 1
-                self.input_sequence()
+            elif i == 4:
+                Settings.LED4.on()
+                sleep(time)
+                Settings.LED4.off()
+                sleep(time)
+
+            elif i == 5:
+                Settings.LED5.on()
+                sleep(time)
+                Settings.LED5.off()
+                sleep(time)"""
+
+
+        self.input_sequence()
 
 
     def player_input(self):
@@ -97,17 +96,17 @@ class Sequence():
             self.playerinputlist.append(2)
             self.check_sequence()
 
-        elif Settings.Button3.is_pressed:
-            self.playerinputlist.append(3)
-            self.check_sequence()
+        #elif Settings.Button3.is_pressed:
+            #self.playerinputlist.append(3)
+            #self.check_sequence()
 
-        elif Settings.Button4.is_pressed:
-            self.playerinputlist.append(4)
-            self.check_sequence()
+        #elif Settings.Button4.is_pressed:
+            #self.playerinputlist.append(4)
+            #self.check_sequence()
 
-        elif Settings.Button5.is_pressed:
-            self.playerinputlist.append(5)
-            self.check_sequence()
+        #elif Settings.Button5.is_pressed:
+            #self.playerinputlist.append(5)
+            #self.check_sequence()
 
         elif len(self.playerinputlist) == len(self.sequence):
             pass #Whileschleife wird unterbrochen
@@ -119,4 +118,7 @@ class Sequence():
             print("Richtige LED gemerkt!")
             Settings.input_check += 1
         else:
-            pass #GAME RESTART
+            pass #GAME RESTARTd
+
+s = Sequence()
+s.generate_sequence()

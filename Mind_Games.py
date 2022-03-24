@@ -6,7 +6,7 @@ import random
 class Settings():
     num_io = 2
     gameover = False
-    time = 0.5
+    time = 0.1
     generate_sequencecheck = 0
     sequence_ledlength = 0
     sequence_showcheck = 1
@@ -35,12 +35,14 @@ class Game():
         self.run = True
         while self.run:
             self.sequence.generate_sequence()
-            #self.sequence.show_sequence(Settings.time)
+            self.sequence.show_sequence(Settings.time)
+            self.sequence.wait_for_input()
 
 class Sequence():
     def __init__(self):
         self.sequence = []
-        self.playerinputlist = []
+        self.input_enabled = False
+        self.input_position = 0
 
     def generate_sequence(self):
         for i in range(0, Settings.led_length):
@@ -86,16 +88,33 @@ class Sequence():
 
 
     def input1(self):
-        print("input1")
-    def input2(self):
-        print("input2")
+        Settings.led1.on()
+        sleep(0.2)
+        Settings.led1.off()
+        self.check_sequence(1)
 
-    def check_sequence(self):
-        if self.sequence[Settings.input_check] == self.playerinputlist[Settings.input_check]:
-            print("Richtige LED gemerkt!")
-            Settings.input_check += 1
+    def input2(self):
+        Settings.led2.on()
+        sleep(0.2)
+        Settings.led2.off()
+        self.check_sequence(2)
+
+    def check_sequence(self, button_id):
+        self.input_position += 1
+        if self.sequence[self.input_position - 1] == button_id:
+            print("Gut")
         else:
-            pass #GAME RESTARTd
+            print("Falsch")
+        print(Settings.led_length)
+        if self.input_position == Settings.led_length:
+            self.input_enabled = False
+            self.sequence = []
+
+    def wait_for_input(self):
+        self.input_position = 0
+        self.input_enabled = True
+        while self.input_enabled:
+            sleep(0.1)
 
 
 game = Game()

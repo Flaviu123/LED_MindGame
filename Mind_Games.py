@@ -2,8 +2,6 @@ from gpiozero import LED, Button
 from time import sleep
 import random
 
-print("Drücke einen Knopf um das Spiel zu beginnen")
-
 
 class Settings():
     num_io = 2
@@ -56,15 +54,9 @@ class Sequence():
         self.user_sequence = []
 
     def generate_sequence(self, led_length, time):
-        add_s = random.uniform(1, Settings.num_io)
-        self.sequence.append(add_s)
-        Settings.sequence_ledlength += 1
-
-        if Settings.sequence_ledlength == led_length:
-            Settings.sequence_ledlength = 0
-            self.show_sequence()
-        else:
-            self.generate_sequence() #Müssen wir noch besprechen, habe andere ideen
+        for i in range(0, led_lenght):
+                add_s = random.uniform(1, Settings.num_io)
+                self.sequence.append(add_s)
 
     def show_sequence(self):
         if Settings.sequence_showcheck == Settings.show_sequence:

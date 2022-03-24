@@ -13,17 +13,17 @@ class Settings():
     show_sequence = 1
     input_check = 0
     led_length = 5
-    LED1 = LED(17)
-    LED2 = LED(27)
-    LED3 = LED(22)
-    LED4 = LED(23)
-    LED5 = LED(24)
+    led1 = LED(17)
+    led2 = LED(27)
+    led3 = LED(22)
+    led4 = LED(23)
+    led5 = LED(24)
 
-    Button1 = Button(25, pull_up=False)
-    Button2 = Button(5, pull_up=False)
-    Button3 = Button(6, pull_up=False)
-    Button4 = Button(16, pull_up=False)
-    Button5 = Button(26, pull_up=False)
+    button1 = Button(25, pull_up=False)
+    button2 = Button(5, pull_up=False)
+    button3 = Button(6, pull_up=False)
+    button4 = Button(16, pull_up=False)
+    button5 = Button(26, pull_up=False)
 
 
 class Game():
@@ -53,34 +53,34 @@ class Sequence():
         for i in self.sequence:
             if i == 1:
                 print("1")
-                Settings.LED1.on()
+                Settings.led1.on()
                 sleep(time)
-                Settings.LED1.off()
+                Settings.led1.off()
                 sleep(time)
 
             elif i == 2:
                 print("2")
-                Settings.LED2.on()
+                Settings.led2.on()
                 sleep(time)
-                Settings.LED2.off()
+                Settings.led2.off()
                 sleep(time)
 
             """elif i == 3:
-                Settings.LED3.on()
+                Settings.led3.on()
                 sleep(time)
-                Settings.LED3.off()
+                Settings.led3.off()
                 sleep(time)
 
             elif i == 4:
-                Settings.LED4.on()
+                Settings.led4.on()
                 sleep(time)
-                Settings.LED4.off()
+                Settings.led4.off()
                 sleep(time)
 
             elif i == 5:
-                Settings.LED5.on()
+                Settings.led5.on()
                 sleep(time)
-                Settings.LED5.off()
+                Settings.led5.off()
                 sleep(time)"""
 
 
@@ -88,23 +88,23 @@ class Sequence():
 
 
     def player_input(self):
-        if Settings.Button1.is_pressed:
+        if Settings.button1.is_pressed:
             self.playerinputlist.append(1)
             self.check_sequence()
 
-        elif Settings.Button2.is_pressed:
+        elif Settings.button2.is_pressed:
             self.playerinputlist.append(2)
             self.check_sequence()
 
-        #elif Settings.Button3.is_pressed:
+        #elif Settings.button3.is_pressed:
             #self.playerinputlist.append(3)
             #self.check_sequence()
 
-        #elif Settings.Button4.is_pressed:
+        #elif Settings.button4.is_pressed:
             #self.playerinputlist.append(4)
             #self.check_sequence()
 
-        #elif Settings.Button5.is_pressed:
+        #elif Settings.button5.is_pressed:
             #self.playerinputlist.append(5)
             #self.check_sequence()
 

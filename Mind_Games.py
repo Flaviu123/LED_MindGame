@@ -5,7 +5,7 @@ import random
 
 class Settings():
     allow_input = False
-    num_io = 2
+    num_io = 5
     gameover = False
     time = 0.5
     generate_sequencecheck = 0
@@ -16,24 +16,24 @@ class Settings():
     led_length = 5
     led1 = LED(17)
     led2 = LED(27)
-#    led3 = LED(22)
-#    led4 = LED(23)
-#    led5 = LED(24)
+    led3 = LED(22)
+    led4 = LED(23)
+    led5 = LED(24)
 
 
 class Game():
     def __init__(self):
         self.button1 = Button(25, pull_up=False)
         self.button2 = Button(5, pull_up=False)
-#        button3 = Button(6, pull_up=False)
-#        button4 = Button(16, pull_up=False)
-#        button5 = Button(26, pull_up=False)
+        self.button3 = Button(6, pull_up=False)
+        self.button4 = Button(16, pull_up=False)
+        self.button5 = Button(26, pull_up=False)
         self.sequence = Sequence()
         self.button1.when_pressed = self.sequence.input1
         self.button2.when_pressed = self.sequence.input2
-#        self.button3.when_pressed = self.sequence.input3
-#        self.button4.when_pressed = self.sequence.input4
-#        self.button5.when_pressed = self.sequence.input5
+        self.button3.when_pressed = self.sequence.input3
+        self.button4.when_pressed = self.sequence.input4
+        self.button5.when_pressed = self.sequence.input5
         run = False
     def run(self):
         self.run = True
@@ -67,21 +67,24 @@ class Sequence():
                 Settings.led2.off()
                 sleep(time)
 
-            """elif i == 3:
+            elif i == 3:
                 Settings.led3.on()
                 sleep(time)
                 Settings.led3.off()
                 sleep(time)
+                
             elif i == 4:
                 Settings.led4.on()
                 sleep(time)
                 Settings.led4.off()
                 sleep(time)
+                
             elif i == 5:
                 Settings.led5.on()
                 sleep(time)
                 Settings.led5.off()
-                sleep(time)"""
+                sleep(time)
+                
         Settings.allow_input = True
 
 
@@ -100,7 +103,7 @@ class Sequence():
             Settings.led2.off()
             self.check_sequence(2)
         
-    """def input3(self):
+    def input3(self):
         if Settings.allow_input == True:
             Settings.led3.on()
             sleep(0.2)
@@ -119,7 +122,7 @@ class Sequence():
             Settings.led5.on()
             sleep(0.2)
             Settings.led5.off()
-            self.check_sequence(5)"""
+            self.check_sequence(5)
 
     def check_sequence(self, button_id):
         self.input_position += 1

@@ -125,12 +125,22 @@ class Sequence():
             self.reset_level()
         if self.input_position == self.led_length:
             self.increase_difficulty()
+            Settings.led3.on()
             print("Nächstes Level beginnt in 3 Sekunden!")
             sleep(1)
+            Settings.led2.on()
+            Settings.led4.on()
             print("Nächstes Level beginnt in 2 Sekunden!")
             sleep(1)
+            Settings.led1.on()
+            Settings.led5.on()
             print("Nächstes Level beginnt in 1 Sekunde!")
             sleep(1)
+            Settings.led1.off()
+            Settings.led2.off()
+            Settings.led3.off()
+            Settings.led4.off()
+            Settings.led5.off()
             self.sequence = []
             self.allow_input = False
                 
@@ -141,12 +151,22 @@ class Sequence():
     def reset_level(self):
         self.led_length = 5
         self.time = 0.5
+        Settings.led1.on()
+        Settings.led2.on()
+        Settings.led3.on()
+        Settings.led4.on()
+        Settings.led5.on()
         print("Das Level startet sich in 3 Sekunden neu!")
         sleep(1)
+        Settings.led1.off()
+        Settings.led5.off()
         print("Das Level startet sich in 2 Sekunden neu!")
         sleep(1)
+        Settings.led2.off()
+        Settings.led4.off()
         print("Das Level startet sich in 1 Sekunde neu!")
         sleep(1)
+        Settings.led3.off()
         self.sequence = []
         self.allow_input = False
             

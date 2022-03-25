@@ -38,7 +38,6 @@ class Game():
 class Sequence():
     def __init__(self):
         self.sequence = []
-        self.input_enabled = False
         self.allow_input = False
         self.input_position = 0
         self.time = 0.5

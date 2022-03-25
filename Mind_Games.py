@@ -25,11 +25,11 @@ class Game():
         self.button3.when_pressed = self.sequence.input3
         self.button4.when_pressed = self.sequence.input4
         self.button5.when_pressed = self.sequence.input5
-        self.run = False
+        self.running = False
         
     def run(self):
-        self.run = True
-        while self.run:
+        self.running = True
+        while self.running:
             self.sequence.generate_sequence()
             self.sequence.show_sequence()
             self.sequence.wait_for_input()
